@@ -15,6 +15,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 @NgModule({
     imports: [
@@ -37,7 +40,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         MatButtonModule,
         MatProgressBarModule,
         NgbModule,
-        FormsModule
+        FormsModule,
+        MatListModule,
+        MatIconModule,
+        ScrollingModule
     ],
     providers: [
         {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Data} from "@angular/router";
 import {MovieSearchResponse} from "../movie-service/models/movie-search-response.model";
 import {MovieService} from "../movie-service/movie.service";
 import {Movie} from "../movie-service/models/movie.model";
@@ -11,16 +11,17 @@ import {Movie} from "../movie-service/models/movie.model";
 })
 export class MovieListComponent implements OnInit {
     public isLoading: boolean = false;
-    public searchText: String = "";
+    public searchText: String = "People";
     public movies: Array<Movie>;
+    public noMoviesText: String = "There're no movies for this request, try something else";
 
     constructor(private route: ActivatedRoute,
                 private movieService: MovieService) {
     }
 
     ngOnInit(): void {
-        this.route.data.subscribe((response: MovieSearchResponse) => {
-            this.movies = response.Search;
+        this.route.data.subscribe((response: Data) => {
+            this.movies = response.movieList.Search;
         });
     }
 
@@ -29,7 +30,11 @@ export class MovieListComponent implements OnInit {
         this.movieService.searchMoviesContentByKeyword(this.searchText)
             .subscribe(
                 (result: MovieSearchResponse) => {
-                    this.movies = result.Search;
+                    if (result.Search) {
+                        this.movies = result.Search
+                    } else {
+                        this.movies = [];
+                    }
                 },
                 error => {
                     console.log(error)

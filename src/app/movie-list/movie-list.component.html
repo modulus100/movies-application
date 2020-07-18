@@ -12,7 +12,30 @@
         <mat-hint>Title, Year, Type, Poster, Plot, IMDB rating, Runtime, Genre</mat-hint>
     </mat-form-field>
 
-    <button mat-stroked-button (click)="search($event)" [disabled]="isLoading">Search</button>
+    <button mat-stroked-button
+            type="submit"
+            (click)="search($event)"
+            (keyup.enter)="search($event)"
+            [disabled]="isLoading">Search
+    </button>
+</div>
+
+<div class="d-flex justify-content-center movie-container">
+    <mat-list *ngIf="movies.length > 0">
+        <mat-list-item *ngFor="let movie of movies">
+            <mat-icon matListIcon>movie</mat-icon>
+            <h3 matLine> {{movie.Title}} </h3>
+            <p matLine>
+                <span> Year </span>
+                <span class="demo-2"> -- {{movie.Year}} </span>
+            </p>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+
+    <div *ngIf="movies.length == 0">
+        {{noMoviesText}}
+    </div>
 </div>
 
 

@@ -6,6 +6,25 @@
     height: 4px;
 }
 
+.mat-list {
+    max-height: 368px;
+    max-width: 632px;
+    overflow: auto;
+}
+
+.movie-container {
+    margin-top: 60px;
+}
+
+.mat-list {
+    border: 1px solid lightgrey;
+    border-radius: 0.5em;
+}
+
+.mat-list-item:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
 /*
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
