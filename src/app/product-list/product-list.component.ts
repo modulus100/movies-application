@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieService} from "../movie-service/movie.service";
-import {MovieSearchResponse} from "../models/movie-search-response.model";
+import {MovieSearchResponse} from "../movie-service/models/movie-search-response.model";
 
 @Component({
   selector: 'app-product-list',
