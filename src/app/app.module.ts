@@ -5,7 +5,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {TopBarComponent} from './top-bar/top-bar.component';
-import {ProductListComponent} from './product-list/product-list.component';
+import {MovieListComponent} from './movie-list/movie-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {URLInterceptor} from "./http/url.interceptor";
 
@@ -15,7 +15,7 @@ import {URLInterceptor} from "./http/url.interceptor";
         ReactiveFormsModule,
         HttpClientModule,
         RouterModule.forRoot([
-            {path: '', component: ProductListComponent},
+            {path: '', component: MovieListComponent},
         ])
     ],
     providers: [
@@ -27,7 +27,7 @@ import {URLInterceptor} from "./http/url.interceptor";
     declarations: [
         AppComponent,
         TopBarComponent,
-        ProductListComponent
+        MovieListComponent
     ],
     bootstrap: [AppComponent]
 })

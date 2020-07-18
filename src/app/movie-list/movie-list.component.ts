@@ -4,10 +4,10 @@ import {MovieSearchResponse} from "../movie-service/models/movie-search-response
 
 @Component({
   selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  templateUrl: './movie-list.component.html',
+  styleUrls: ['./movie-list.component.css']
 })
-export class ProductListComponent implements OnInit{
+export class MovieListComponent implements OnInit{
 
   constructor(private movieService: MovieService) {
   }
