@@ -8,11 +8,11 @@
 <div class="d-flex justify-content-center align-items-center">
     <mat-form-field class="search-input" appearance="standard">
         <mat-label>Movie Search</mat-label>
-        <input matInput placeholder="">
+        <input [(ngModel)]="searchText" matInput placeholder="">
         <mat-hint>Title, Year, Type, Poster, Plot, IMDB rating, Runtime, Genre</mat-hint>
     </mat-form-field>
 
-    <button (click)="search($event)" mat-stroked-button>Search</button>
+    <button mat-stroked-button (click)="search($event)" [disabled]="isLoading">Search</button>
 </div>
 
 

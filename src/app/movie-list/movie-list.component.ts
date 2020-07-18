@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {MovieSearchResponse} from "../movie-service/models/movie-search-response.model";
+import {MovieService} from "../movie-service/movie.service";
+import {Movie} from "../movie-service/models/movie.model";
 
 @Component({
     selector: 'movie-list',
@@ -9,18 +11,32 @@ import {MovieSearchResponse} from "../movie-service/models/movie-search-response
 })
 export class MovieListComponent implements OnInit {
     public isLoading: boolean = false;
+    public searchText: String = "";
+    public movies: Array<Movie>;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute,
+                private movieService: MovieService) {
     }
 
     ngOnInit(): void {
         this.route.data.subscribe((response: MovieSearchResponse) => {
-            console.log(response)
+            this.movies = response.Search;
         });
     }
 
-    search(event) {
+    search(event): void {
         this.isLoading = !this.isLoading;
+        this.movieService.searchMoviesContentByKeyword(this.searchText)
+            .subscribe(
+                (result: MovieSearchResponse) => {
+                    this.movies = result.Search;
+                },
+                error => {
+                    console.log(error)
+                },
+                () => {
+                    this.isLoading = false;
+                })
     }
 }
 
