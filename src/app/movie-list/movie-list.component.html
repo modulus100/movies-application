@@ -1,12 +1,20 @@
-<div>
+<div *ngIf="isLoading">
+    <mat-progress-bar class="loader" mode="indeterminate"></mat-progress-bar>
+</div>
+<div *ngIf="!isLoading">
+    <div class="empty-loader"></div>
+</div>
+
+<div class="d-flex justify-content-center align-items-center">
     <mat-form-field class="search-input" appearance="standard">
         <mat-label>Movie Search</mat-label>
         <input matInput placeholder="">
         <mat-hint>Title, Year, Type, Poster, Plot, IMDB rating, Runtime, Genre</mat-hint>
     </mat-form-field>
 
-    <button mat-stroked-button>Search</button>
+    <button (click)="search($event)" mat-stroked-button>Search</button>
 </div>
+
 
 
 <!-- 

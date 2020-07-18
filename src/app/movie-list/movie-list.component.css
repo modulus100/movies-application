@@ -2,9 +2,8 @@
     margin-right: 4em;
 }
 
-:host(movie-list) {
-    margin-right: auto;
-    margin-left: auto;
+.empty-loader {
+    height: 4px;
 }
 
 /*
