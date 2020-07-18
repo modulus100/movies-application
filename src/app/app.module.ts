@@ -10,6 +10,12 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {URLInterceptor} from "./http/url.interceptor";
 import {StoreModule} from "@ngrx/store";
 import {MovieListResolver} from "./movie-list/resolvers/movie.resolver";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatButtonModule} from "@angular/material/button";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
@@ -25,7 +31,13 @@ import {MovieListResolver} from "./movie-list/resolvers/movie.resolver";
                 }
             },
         ]),
-        StoreModule.forRoot({})
+        StoreModule.forRoot({}),
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        NgbModule
     ],
     providers: [
         {

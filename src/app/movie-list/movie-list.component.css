@@ -1,4 +1,11 @@
+.search-input {
+    margin-right: 4em;
+}
 
+:host(movie-list) {
+    margin-right: auto;
+    margin-left: auto;
+}
 
 /*
 Copyright Google LLC. All Rights Reserved.
