@@ -1,28 +1,38 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {RouterModule} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import {AppComponent} from './app.component';
+import {TopBarComponent} from './top-bar/top-bar.component';
+import {ProductListComponent} from './product-list/product-list.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {URLInterceptor} from "./http/url.interceptor";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-    ])
-  ],
-  declarations: [
-    AppComponent,
-    TopBarComponent,
-    ProductListComponent
-  ],
-  bootstrap: [ AppComponent ]
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule.forRoot([
+            {path: '', component: ProductListComponent},
+        ])
+    ],
+    providers: [
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: URLInterceptor,
+          multi: true
+        }],
+    declarations: [
+        AppComponent,
+        TopBarComponent,
+        ProductListComponent
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
 
 
 /*
