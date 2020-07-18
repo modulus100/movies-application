@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MovieService} from "../movie-service/movie.service";
-import {MovieSearchResponse} from "../movie-service/models/movie-search-response.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-product-list',
@@ -9,24 +8,13 @@ import {MovieSearchResponse} from "../movie-service/models/movie-search-response
 })
 export class MovieListComponent implements OnInit{
 
-  constructor(private movieService: MovieService) {
-  }
-
-  share() {
-    window.alert('The product has been shared!');
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    const keyWord = "People";
-    this.movieService.searchMoviesContentByKeyword(keyWord)
-        .subscribe((response: MovieSearchResponse) => {
-          console.log(response);
-        }, error => {
-          console.log(error);
-        }, () => {
-          console.log("transfers completed");
-        });
-
+      this.route.data.subscribe( (data) => {
+          console.log(data)
+      });
   }
 }
 

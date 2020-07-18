@@ -8,6 +8,8 @@ import {TopBarComponent} from './top-bar/top-bar.component';
 import {MovieListComponent} from './movie-list/movie-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {URLInterceptor} from "./http/url.interceptor";
+import {StoreModule} from "@ngrx/store";
+import {MovieListResolver} from "./movie-list/resolvers/movie.resolver";
 
 @NgModule({
     imports: [
@@ -15,8 +17,15 @@ import {URLInterceptor} from "./http/url.interceptor";
         ReactiveFormsModule,
         HttpClientModule,
         RouterModule.forRoot([
-            {path: '', component: MovieListComponent},
-        ])
+            {
+                path: '',
+                component: MovieListComponent,
+                resolve: {
+                    movieList: MovieListResolver
+                }
+            },
+        ]),
+        StoreModule.forRoot({})
     ],
     providers: [
         {
