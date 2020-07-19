@@ -21,7 +21,7 @@ export class MovieListComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.data.subscribe((response: Data) => {
-            this.movies = response.movieList.Search;
+            this.movies = response.movies.Search;
         });
     }
 
