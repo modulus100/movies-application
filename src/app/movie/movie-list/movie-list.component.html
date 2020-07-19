@@ -24,7 +24,7 @@
     <mat-list *ngIf="movies.length > 0">
         <mat-list-item *ngFor="let movie of movies">
             <mat-icon matListIcon>movie</mat-icon>
-            <h3 matLine> {{movie.Title}} </h3>
+            <h3 matLine>Title: {{movie.Title}} </h3>
             <p matLine>
                 <span> Year </span>
                 <span class="demo-2"> -- {{movie.Year}} </span>

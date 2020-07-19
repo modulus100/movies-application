@@ -1,6 +1,7 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
+import {environment} from "../../environments/environment"
 
 @Injectable()
 export class URLInterceptor implements HttpInterceptor {
@@ -9,7 +10,7 @@ export class URLInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const clonedRequest = request.clone({
-            url: "https://www.omdbapi.com" + request.url
+            url: environment.baseUrl + request.url
         });
         return next.handle(clonedRequest);
     }

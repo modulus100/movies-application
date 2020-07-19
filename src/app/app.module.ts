@@ -9,16 +9,21 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppRoutingModule} from "./app-routing.module";
 import {MovieModule} from "./movie/movie.module";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
-        StoreModule.forRoot({}),
         BrowserAnimationsModule,
         NgbModule,
-        MovieModule
+        MovieModule,
+        StoreModule.forRoot({}, {}),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+        StoreRouterConnectingModule.forRoot()
     ],
     providers: [
         {
@@ -29,7 +34,6 @@ import {MovieModule} from "./movie/movie.module";
     declarations: [
         AppComponent,
         TopBarComponent
-        //MovieListComponent
     ],
     bootstrap: [AppComponent]
 })
