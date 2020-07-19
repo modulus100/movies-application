@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data} from "@angular/router";
-import {MovieSearchResponse} from "../movie-service/models/movie-search-response.model";
-import {MovieService} from "../movie-service/movie.service";
-import {Movie} from "../movie-service/models/movie.model";
+import {MovieSearchResponse} from "../models/movie-search-response.model";
+import {MovieService} from "../movie.service";
+import {Movie} from "../models/movie.model";
 
 @Component({
     selector: 'movie-list',

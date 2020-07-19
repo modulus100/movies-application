@@ -1,14 +1,12 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {TopBarComponent} from './top-bar/top-bar.component';
-import {MovieListComponent} from './movie-list/movie-list.component';
+import {MovieListComponent} from './movie/movie-list/movie-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {URLInterceptor} from "./http/url.interceptor";
 import {StoreModule} from "@ngrx/store";
-import {MovieListResolver} from "./movie-list/resolvers/movie.resolver";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -18,21 +16,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {ScrollingModule} from "@angular/cdk/scrolling";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        RouterModule.forRoot([
-            {
-                path: '',
-                component: MovieListComponent,
-                resolve: {
-                    movieList: MovieListResolver
-                }
-            },
-        ]),
+        AppRoutingModule,
         StoreModule.forRoot({}),
         MatFormFieldModule,
         MatInputModule,
