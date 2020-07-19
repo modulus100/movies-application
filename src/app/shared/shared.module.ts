@@ -23,6 +23,7 @@ import {CommonModule} from "@angular/common";
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
+        CommonModule
     ]
 })
 export class SharedModule { }
