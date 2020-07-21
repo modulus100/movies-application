@@ -1,5 +1,5 @@
 import {StoreModule} from '@ngrx/store';
-import {MovieListComponent} from "./movie-list/movie-list.component";
+import {MovieComponent} from "./movie.component";
 import {SharedModule} from "../shared/shared.module";
 import {NgModule} from "@angular/core";
 import {Routes} from "@angular/router";
@@ -15,7 +15,7 @@ import {Routes} from "@angular/router";
         //StoreModule.forFeature('movies', productReducer)
     ],
     declarations: [
-        MovieListComponent,
+        MovieComponent,
     ]
 })
 export class MovieModule {}

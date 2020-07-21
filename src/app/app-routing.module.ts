@@ -1,13 +1,13 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {MovieListComponent} from "./movie/movie-list/movie-list.component";
-import {MovieListResolver} from "./movie/movie-list/resolvers/movie.resolver";
+import {MovieComponent} from "./movie/movie.component";
+import {MovieListResolver} from "./movie/resolvers/movie.resolver";
 
 
 const appRoutes: Routes = [
     {
         path: '',
-        component: MovieListComponent,
+        component: MovieComponent,
         resolve: {
             movies: MovieListResolver
         }
