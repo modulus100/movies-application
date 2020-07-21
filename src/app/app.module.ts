@@ -4,26 +4,22 @@ import {AppComponent} from './app.component';
 import {TopBarComponent} from './top-bar/top-bar.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {URLInterceptor} from "./http/url.interceptor";
-import {StoreModule} from "@ngrx/store";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppRoutingModule} from "./app-routing.module";
 import {MovieModule} from "./movie/movie.module";
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import {AppStoreModule} from "./app-store.module";
+
 
 @NgModule({
     imports: [
+        AppRoutingModule,
+        AppStoreModule,
         BrowserModule,
         HttpClientModule,
-        AppRoutingModule,
         BrowserAnimationsModule,
         NgbModule,
-        MovieModule,
-        StoreModule.forRoot({}, {}),
-        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-        StoreRouterConnectingModule.forRoot()
+        MovieModule
     ],
     providers: [
         {
