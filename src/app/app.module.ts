@@ -7,7 +7,7 @@ import {URLInterceptor} from "./core/http/url.interceptor";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppRoutingModule} from "./app-routing.module";
-import {MovieModule} from "./movie/movie.module";
+import {MovieModule} from "./app-modules/movie/movie.module";
 import {AppStoreModule} from "./app-store.module";
 
 

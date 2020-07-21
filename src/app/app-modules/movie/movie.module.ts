@@ -1,6 +1,6 @@
 import {StoreModule} from '@ngrx/store';
 import {MovieComponent} from "./movie.component";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../../shared/shared.module";
 import {NgModule} from "@angular/core";
 import {Routes} from "@angular/router";
 
