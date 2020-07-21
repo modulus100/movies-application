@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data} from "@angular/router";
 import {MovieSearchResponse} from "./models/movie-search-response.model";
-import {MovieService} from "./movie.service";
+import {MovieService} from "./services/movie.service";
 import {Movie} from "./models/movie.model";
 
 @Component({
