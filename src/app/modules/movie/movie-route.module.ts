@@ -1,5 +1,4 @@
 import {NgModule} from "@angular/core";
-import {MovieComponent} from "./movie.component";
 
 // const productRoutes: Routes = [
 //     { path: '', component: MovieDetails }
