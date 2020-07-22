@@ -4,6 +4,10 @@ import {Action} from "@ngrx/store";
 import {Movie} from "../../models/movie.model";
 
 export class LoadMovies implements Action {
+    constructor(public searchKeyword: String) {
+
+    }
+
     readonly type = MovieActionTypes.LOAD_MOVIES;
 }
 

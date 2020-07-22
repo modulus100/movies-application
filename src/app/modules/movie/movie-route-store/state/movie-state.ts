@@ -1,5 +1,5 @@
 import {Movie} from "../../models/movie.model";
-import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
+import {EntityState} from "@ngrx/entity";
 import * as rootState from "../../../../state/app-state";
 
 

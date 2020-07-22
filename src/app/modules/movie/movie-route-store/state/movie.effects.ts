@@ -8,11 +8,12 @@ import * as movieActions from "./movie.actions"
 import {MovieActionTypes} from "./movieActionTypes";
 import {MovieSearchResponse} from "../../models/movie-search-response.model";
 import {Movie} from "../../models/movie.model";
+import {LoadMovies} from "./movie.actions";
 
 @Injectable()
 export class MovieEffects {
 
-    constructor(private actions$: Actions,
+    constructor(private actions: Actions,
                 private movieService: MovieService) {
     }
 
@@ -23,16 +24,13 @@ export class MovieEffects {
     }
 
     @Effect()
-    loadCustomers$: Observable<Action> = this.actions$.pipe(
-        ofType<movieActions.LoadMovies>(
-            MovieActionTypes.LOAD_MOVIES
-        ),
-        mergeMap((action: movieActions.LoadMovies) =>
-            this.movieService.searchMoviesContentByKeyword("People")
-                .pipe(
-                    map((respomse: MovieSearchResponse) => {
-                        this.initIds(respomse.Search);
-                        return new movieActions.LoadMoviesSuccess(respomse.Search)
+    loadMovies: Observable<Action> = this.actions.pipe(
+        ofType<movieActions.LoadMovies>(MovieActionTypes.LOAD_MOVIES),
+        mergeMap((action: LoadMovies) => this.movieService.searchMoviesContentByKeyword(action.searchKeyword)
+            .pipe(
+                map((response: MovieSearchResponse) => {
+                        this.initIds(response.Search);
+                        return new movieActions.LoadMoviesSuccess(response.Search)
                     }
                 ),
                 catchError(err => of(new movieActions.LoadMoviesFail(err)))

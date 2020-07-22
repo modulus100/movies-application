@@ -17,7 +17,7 @@ export class MovieDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.store.dispatch(new movieActions.LoadMovies());
+        this.store.dispatch(new movieActions.LoadMovies("test"));
         this.store.subscribe(state => (this.movies = state.movies.movies));
 
         console.log(this.movies);

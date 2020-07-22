@@ -17,9 +17,8 @@ import * as movieActions from "./movie-route-store/state/movie.actions"
 export class MovieComponent implements OnInit {
     public isLoading: boolean = false;
     public searchText: String = "People";
-    public movies: Array<Movie>;
     public noMoviesText: String = "There're no movies for this request, try something else";
-    public movies$: Observable<Array<Movie>>
+    public movies: Observable<Array<Movie>>
 
     constructor(private route: ActivatedRoute,
                 private movieService: MovieService,
@@ -28,22 +27,23 @@ export class MovieComponent implements OnInit {
 
     ngOnInit(): void {
         // get the data by using ngrx
-        this.store.dispatch(new movieActions.LoadMovies());
+        this.store.dispatch(new movieActions.LoadMovies(this.searchText));
         /*this.store.subscribe(state => (this.movies2 = state.movies.movies));
         console.log('movies 2');
         console.log(this.movies2);*/
 
         // get the data by using resolve
-        this.route.data.subscribe((response: Data) => {
+        /*this.route.data.subscribe((response: Data) => {
             this.movies = response.movies.Search;
-        });
+        });*/
 
-        this.movies$ = this.store.pipe(select(movieSelectors.getMovies));
-        console.log(this.movies$);
+        this.movies = this.store.pipe(select(movieSelectors.getMovies));
+        console.log(this.movies);
     }
 
     search(event): void {
-        this.isLoading = !this.isLoading;
+        // load directly by service
+        /*this.isLoading = !this.isLoading;
         this.movieService.searchMoviesContentByKeyword(this.searchText)
             .subscribe(
                 (result: MovieSearchResponse) => {
@@ -58,7 +58,8 @@ export class MovieComponent implements OnInit {
                 },
                 () => {
                     this.isLoading = false;
-                })
+                })*/
+        this.store.dispatch(new movieActions.LoadMovies(this.searchText));
     }
 }
 

@@ -21,8 +21,8 @@
 </div>
 
 <div class="d-flex justify-content-center movie-container">
-    <mat-list *ngIf="movies.length > 0">
-        <mat-list-item *ngFor="let movie of (movies$ |async)" [routerLink]="['/movie-details']">
+    <mat-list *ngIf="true > 0">
+        <mat-list-item *ngFor="let movie of (movies |async)" [routerLink]="['/movie-details']">
             <mat-icon matListIcon>movie</mat-icon>
             <h3 matLine>Title: {{movie.Title}} </h3>
             <p matLine>
@@ -33,7 +33,7 @@
         </mat-list-item>
     </mat-list>
 
-    <div *ngIf="movies.length == 0">
+    <div *ngIf="false">
         {{noMoviesText}}
     </div>
 </div>
