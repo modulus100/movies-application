@@ -5,6 +5,7 @@ import {MovieStoreModule} from "./movie-route-store/movie-store.module";
 import {MovieRouteModule} from "./movie-route-store/movie-route.module";
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import {AppRoutingModule} from "../../app-routing.module";
+import {EffectsModule} from "@ngrx/effects";
 
 
 @NgModule({

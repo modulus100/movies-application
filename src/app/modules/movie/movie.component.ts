@@ -23,7 +23,7 @@ export class MovieComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.store.dispatch({type: MovieActionTypes.LOAD_MOVIES});
+        //this.store.dispatch({type: MovieActionTypes.LOAD_MOVIES});
         /*this.store.subscribe(state => (this.movies2 = state.movies.movies));
         console.log('movies 2');
         console.log(this.movies2);*/

@@ -1,7 +1,4 @@
-import {Movie} from "../../models/movie.model";
-import {EntityState, EntityAdapter, createEntityAdapter} from "@ngrx/entity"
-import * as rootState from "../../../../state/app-state"
-import {defaultMovie, MovieState} from "./movieStateConfig";
+import * as movieActions from "./movie.actions";
 import {MovieActionTypes} from "./movieActionTypes";
 
 const initialState = {
@@ -19,13 +16,32 @@ const initialState = {
     loaded: true
 };
 
-export function movieReducer(state= initialState, action) {
+export function movieReducer(
+    state= initialState,
+    action: movieActions.Action) {
     switch (action.type) {
         case MovieActionTypes.LOAD_MOVIES: {
             return {
                 ...state,
+                loading: true
+            }
+        }
+        case MovieActionTypes.LOAD_MOVIES_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                loaded: true,
+                movies: action.payload
+            }
+        }
+
+        case MovieActionTypes.LOAD_MOVIES_FAIL: {
+            return {
+                ...state,
+                movies: [],
                 loading: true,
-                loaded: false
+                loaded: false,
+                error: action.payload
             };
         }
 
