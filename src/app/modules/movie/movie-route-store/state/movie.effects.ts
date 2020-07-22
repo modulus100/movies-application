@@ -28,9 +28,9 @@ export class MovieEffects {
             MovieActionTypes.LOAD_MOVIES
         ),
         mergeMap((action: movieActions.LoadMovies) =>
-            this.movieService.searchMoviesContentByKeyword("People").pipe(
-                map(
-                    (respomse: MovieSearchResponse) => {
+            this.movieService.searchMoviesContentByKeyword("People")
+                .pipe(
+                    map((respomse: MovieSearchResponse) => {
                         this.initIds(respomse.Search);
                         return new movieActions.LoadMoviesSuccess(respomse.Search)
                     }
