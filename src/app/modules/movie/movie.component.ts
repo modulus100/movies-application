@@ -3,6 +3,8 @@ import {ActivatedRoute, Data} from "@angular/router";
 import {MovieSearchResponse} from "./models/movie-search-response.model";
 import {MovieService} from "./services/movie.service";
 import {Movie} from "./models/movie.model";
+import {Store} from "@ngrx/store";
+import {MovieActionTypes} from "./movie-route-store/state/movieActionTypes";
 
 @Component({
     selector: 'movie-list',
@@ -16,10 +18,16 @@ export class MovieComponent implements OnInit {
     public noMoviesText: String = "There're no movies for this request, try something else";
 
     constructor(private route: ActivatedRoute,
-                private movieService: MovieService) {
+                private movieService: MovieService,
+                private store: Store<any>) {
     }
 
     ngOnInit(): void {
+        this.store.dispatch({type: MovieActionTypes.LOAD_MOVIES});
+        /*this.store.subscribe(state => (this.movies2 = state.movies.movies));
+        console.log('movies 2');
+        console.log(this.movies2);*/
+
         this.route.data.subscribe((response: Data) => {
             this.movies = response.movies.Search;
         });

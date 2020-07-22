@@ -22,12 +22,12 @@
 
 <div class="d-flex justify-content-center movie-container">
     <mat-list *ngIf="movies.length > 0">
-        <mat-list-item *ngFor="let movie of movies">
+        <mat-list-item *ngFor="let movie of movies" [routerLink]="['/movie']">
             <mat-icon matListIcon>movie</mat-icon>
             <h3 matLine>Title: {{movie.Title}} </h3>
             <p matLine>
                 <span> Year </span>
-                <span class="demo-2"> -- {{movie.Year}} </span>
+                <span> -- {{movie.Year}} </span>
             </p>
             <mat-divider></mat-divider>
         </mat-list-item>
