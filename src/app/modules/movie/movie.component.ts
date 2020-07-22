@@ -7,6 +7,7 @@ import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import * as appStates from "./movie-route-store/state/movie-state";
 import * as movieSelectors from "./movie-route-store/state/movie.selector";
+import * as movieActions from "./movie-route-store/state/movie.actions"
 
 @Component({
     selector: 'movie-list',
@@ -26,17 +27,19 @@ export class MovieComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //this.store.dispatch({type: MovieActionTypes.LOAD_MOVIES});
+        // get the data by using ngrx
+        this.store.dispatch(new movieActions.LoadMovies());
         /*this.store.subscribe(state => (this.movies2 = state.movies.movies));
         console.log('movies 2');
         console.log(this.movies2);*/
 
+        // get the data by using resolve
         this.route.data.subscribe((response: Data) => {
             this.movies = response.movies.Search;
         });
 
         this.movies$ = this.store.pipe(select(movieSelectors.getMovies));
-        //console.log(this.movies$);
+        console.log(this.movies$);
     }
 
     search(event): void {
