@@ -24,5 +24,3 @@ export interface AppState extends rootState.AppState {
     movies: MovieState;
 }
 
-export const movieAdapter: EntityAdapter<Movie> = createEntityAdapter<Movie>();
-export const initialState = movieAdapter.getInitialState(defaultMovie);

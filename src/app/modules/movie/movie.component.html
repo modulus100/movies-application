@@ -22,7 +22,7 @@
 
 <div class="d-flex justify-content-center movie-container">
     <mat-list *ngIf="movies.length > 0">
-        <mat-list-item *ngFor="let movie of movies" [routerLink]="['/movie']">
+        <mat-list-item *ngFor="let movie of movies" [routerLink]="['/movie-details']">
             <mat-icon matListIcon>movie</mat-icon>
             <h3 matLine>Title: {{movie.Title}} </h3>
             <p matLine>

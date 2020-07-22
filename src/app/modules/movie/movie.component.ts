@@ -3,8 +3,10 @@ import {ActivatedRoute, Data} from "@angular/router";
 import {MovieSearchResponse} from "./models/movie-search-response.model";
 import {MovieService} from "./services/movie.service";
 import {Movie} from "./models/movie.model";
-import {Store} from "@ngrx/store";
-import {MovieActionTypes} from "./movie-route-store/state/movieActionTypes";
+import {select, Store} from "@ngrx/store";
+import {Observable} from "rxjs";
+import * as appStates from "./movie-route-store/state/movie-state";
+import * as movieSelectors from "./movie-route-store/state/movie.selector";
 
 @Component({
     selector: 'movie-list',
@@ -16,10 +18,11 @@ export class MovieComponent implements OnInit {
     public searchText: String = "People";
     public movies: Array<Movie>;
     public noMoviesText: String = "There're no movies for this request, try something else";
+    public movies$: Observable<Array<Movie>>
 
     constructor(private route: ActivatedRoute,
                 private movieService: MovieService,
-                private store: Store<any>) {
+                private store: Store<appStates.AppState>) {
     }
 
     ngOnInit(): void {
@@ -31,6 +34,9 @@ export class MovieComponent implements OnInit {
         this.route.data.subscribe((response: Data) => {
             this.movies = response.movies.Search;
         });
+
+        this.movies$ = this.store.pipe(select(movieSelectors.getMovies));
+        //console.log(this.movies$);
     }
 
     search(event): void {

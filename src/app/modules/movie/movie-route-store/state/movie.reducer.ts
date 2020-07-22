@@ -1,20 +1,12 @@
 import * as movieActions from "./movie.actions";
 import {MovieActionTypes} from "./movieActionTypes";
+import {defaultMovie} from "./movie-state";
+import {createEntityAdapter, EntityAdapter} from "@ngrx/entity";
+import {Movie} from "../../models/movie.model";
 
-const initialState = {
-    movies: [
-        {
-            id: 1,
-            Title: 'Title',
-            Year: '2010',
-            imdbID: 'imdHer',
-            Type: 'test type',
-            Poster: 'poster'
-        }
-    ],
-    loading: false,
-    loaded: true
-};
+
+export const movieAdapter: EntityAdapter<Movie> = createEntityAdapter<Movie>();
+export const initialState = movieAdapter.getInitialState(defaultMovie);
 
 export function movieReducer(
     state= initialState,
@@ -27,19 +19,18 @@ export function movieReducer(
             }
         }
         case MovieActionTypes.LOAD_MOVIES_SUCCESS: {
-            return {
+            return movieAdapter.setAll(action.payload, {
                 ...state,
                 loading: false,
-                loaded: true,
-                movies: action.payload
-            }
+                loaded: true
+            })
         }
 
         case MovieActionTypes.LOAD_MOVIES_FAIL: {
             return {
                 ...state,
-                movies: [],
-                loading: true,
+                entities: {},
+                loading: false,
                 loaded: false,
                 error: action.payload
             };
