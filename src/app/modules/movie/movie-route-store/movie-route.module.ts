@@ -1,12 +1,17 @@
 import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {MovieDetailsComponent} from "../movie-details/movie-details.component";
 
-// const productRoutes: Routes = [
-//     { path: '', component: MovieDetails }
-// ];
+const movieRoutes: Routes = [
+    {
+        path: '',
+        component: MovieDetailsComponent
+    }
+];
 
 @NgModule({
     imports: [
-        //RouterModule.forChild(movieRoutes),
+        RouterModule.forChild(movieRoutes),
     ],
     declarations: [
     ]
