@@ -17,7 +17,7 @@
     <div *ngIf="!loading">
         <div *ngIf="movies | async">
             <mat-list>
-                <mat-list-item *ngFor="let movie of (movies | async)" [routerLink]="['/movie-details']">
+                <mat-list-item *ngFor="let movie of (movies | async)" [routerLink]="['/movie-details', movie.id]">
                     <mat-icon matListIcon>movie</mat-icon>
                     <h3 matLine>Title: {{movie.Title}} </h3>
                     <p matLine>

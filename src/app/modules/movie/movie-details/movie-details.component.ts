@@ -3,6 +3,7 @@ import {Store} from "@ngrx/store";
 import {Movie} from "../models/movie.model";
 import {MovieActionTypes} from "../movie-route-store/state/movieActionTypes";
 import * as movieActions from "../movie-route-store/state/movie.actions";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -13,13 +14,11 @@ import * as movieActions from "../movie-route-store/state/movie.actions";
 export class MovieDetailsComponent implements OnInit {
     public movies: Array<Movie>;
 
-    constructor(private store: Store<any>) {
+    constructor(private store: Store<any>,
+                private router: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        //this.store.dispatch(new movieActions.LoadMovies("test"));
-        //this.store.subscribe(state => (this.movies = state.movies.movies));
-
-        //console.log(this.movies);
+        console.log(this.router.params);
     }
 }
