@@ -21,17 +21,19 @@
 </div>
 
 <div class="d-flex justify-content-center movie-container">
-    <mat-list *ngIf="movies | async">
-        <mat-list-item *ngFor="let movie of (movies | async)" [routerLink]="['/movie-details']">
-            <mat-icon matListIcon>movie</mat-icon>
-            <h3 matLine>Title: {{movie.Title}} </h3>
-            <p matLine>
-                <span> Year </span>
-                <span> -- {{movie.Year}} </span>
-            </p>
-            <mat-divider></mat-divider>
-        </mat-list-item>
-    </mat-list>
+    <div *ngIf="movies | async">
+        <mat-list>
+            <mat-list-item *ngFor="let movie of (movies | async)" [routerLink]="['/movie-details']">
+                <mat-icon matListIcon>movie</mat-icon>
+                <h3 matLine>Title: {{movie.Title}} </h3>
+                <p matLine>
+                    <span> Year </span>
+                    <span> -- {{movie.Year}} </span>
+                </p>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+    </div>
 
     <div *ngIf="(getMoviesError | async) || (movies | async).length == 0">
         {{noMoviesText}}
