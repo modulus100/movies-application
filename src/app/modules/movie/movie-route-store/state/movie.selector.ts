@@ -3,15 +3,14 @@ import {MovieState} from "./movie-state";
 import {movieAdapter} from "./movie.reducer";
 
 
-const getMovieFeatureState = createFeatureSelector<MovieState>(
-    'movies'
-)
+const getMovieFeatureState = createFeatureSelector<MovieState>('movies')
 
 export const getMovies = createSelector(
     getMovieFeatureState,
     movieAdapter.getSelectors().selectAll
 );
 
+// just learning
 export const getMoviesLoading = createSelector(
     getMovieFeatureState,
     (state: MovieState) => state.loading

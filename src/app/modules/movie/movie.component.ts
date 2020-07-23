@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data} from "@angular/router";
-import {MovieSearchResponse} from "./models/movie-search-response.model";
 import {MovieService} from "./services/movie.service";
 import {Movie} from "./models/movie.model";
 import {select, Store} from "@ngrx/store";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import * as appStates from "./movie-route-store/state/movie-state";
 import * as movieSelectors from "./movie-route-store/state/movie.selector";
 import * as movieActions from "./movie-route-store/state/movie.actions"
@@ -18,7 +17,8 @@ export class MovieComponent implements OnInit {
     public isLoading: boolean = false;
     public searchText: String = "People";
     public noMoviesText: String = "There're no movies for this request, try something else";
-    public movies: Observable<Array<Movie>>
+    public movies: Observable<Array<Movie>>;
+    public getMoviesError: Observable<string>;
 
     constructor(private route: ActivatedRoute,
                 private movieService: MovieService,
@@ -26,11 +26,10 @@ export class MovieComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // get the data by using ngrx
+        // get the data using ngrx
         this.store.dispatch(new movieActions.LoadMovies(this.searchText));
-        /*this.store.subscribe(state => (this.movies2 = state.movies.movies));
-        console.log('movies 2');
-        console.log(this.movies2);*/
+        this.getMoviesError = this.store.pipe(select(movieSelectors.getError));
+        //this.store.subscribe(state => (this.movies2 = state.movies.movies));
 
         // get the data by using resolve
         /*this.route.data.subscribe((response: Data) => {
@@ -38,27 +37,13 @@ export class MovieComponent implements OnInit {
         });*/
 
         this.movies = this.store.pipe(select(movieSelectors.getMovies));
+
+        //this.store.p
+
         console.log(this.movies);
     }
 
     search(event): void {
-        // load directly by service
-        /*this.isLoading = !this.isLoading;
-        this.movieService.searchMoviesContentByKeyword(this.searchText)
-            .subscribe(
-                (result: MovieSearchResponse) => {
-                    if (result.Search) {
-                        this.movies = result.Search
-                    } else {
-                        this.movies = [];
-                    }
-                },
-                error => {
-                    console.log(error)
-                },
-                () => {
-                    this.isLoading = false;
-                })*/
         this.store.dispatch(new movieActions.LoadMovies(this.searchText));
     }
 }
