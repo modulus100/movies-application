@@ -9,6 +9,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppRoutingModule} from "./app-routing.module";
 import {MovieModule} from "./modules/movie/movie.module";
 import {AppStoreModule} from "./app-store.module";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {AppStoreModule} from "./app-store.module";
         HttpClientModule,
         BrowserAnimationsModule,
         NgbModule,
-        MovieModule
+        MovieModule,
+        MatProgressBarModule
     ],
     providers: [
         {

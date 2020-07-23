@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Data} from "@angular/router";
+import {Router} from "@angular/router";
 import {MovieService} from "./services/movie.service";
 import {Movie} from "./models/movie.model";
 import {select, Store} from "@ngrx/store";
@@ -21,16 +21,14 @@ export class MovieComponent implements OnInit {
     public movies: Observable<Array<Movie>>;
     public getMoviesError: Observable<string>;
 
-    constructor(private route: ActivatedRoute,
+    constructor(private router: Router,
                 private movieService: MovieService,
                 private store: Store<appStates.AppState>) {
     }
 
     ngOnInit(): void {
-        // get the data using ngrx
         this.store.dispatch(new movieActions.LoadMovies(this.searchText));
         this.getMoviesError = this.store.pipe(select(movieSelectors.getError));
-        //this.store.subscribe(state => (this.movies = state.movies.movies));
 
         // get the data by using resolve
         /*this.route.data.subscribe((response: Data) => {
