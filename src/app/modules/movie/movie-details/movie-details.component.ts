@@ -5,7 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import * as appStates from "../movie-route-store/state/movie-state";
 import * as movieSelectors from "../movie-route-store/state/movie.selector"
 import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {take} from "rxjs/operators";
 
 @Component({
     selector: 'app-movie-details',
@@ -21,17 +21,17 @@ export class MovieDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.initMovie();
-    }
-
-    initMovie(): void {
         this.route.paramMap.subscribe(params => {
             const id = params.get('id');
-            this.movie$ = this.store$.pipe(select(movieSelectors.getMovieById, {id}))
+            this.movie$ = this.store$.pipe(
+                select(movieSelectors.getMovieById, {id}),
+                take(1)
+            );
         });
 
-        this.movie$.subscribe(next => {
-            console.log(next);
+        this.movie$.subscribe(movie => {
+            console.log(movie);
+            this.movie = movie;
         });
     }
 }
