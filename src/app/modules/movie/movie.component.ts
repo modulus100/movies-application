@@ -3,10 +3,11 @@ import {ActivatedRoute, Data} from "@angular/router";
 import {MovieService} from "./services/movie.service";
 import {Movie} from "./models/movie.model";
 import {select, Store} from "@ngrx/store";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import * as appStates from "./movie-route-store/state/movie-state";
 import * as movieSelectors from "./movie-route-store/state/movie.selector";
 import * as movieActions from "./movie-route-store/state/movie.actions"
+import {AppState} from "./movie-route-store/state/movie-state";
 
 @Component({
     selector: 'movie-list',
@@ -14,7 +15,7 @@ import * as movieActions from "./movie-route-store/state/movie.actions"
     styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
-    public isLoading: boolean = false;
+    public loading: boolean = true;
     public searchText: String = "People";
     public noMoviesText: String = "There're no movies for this request, try something else";
     public movies: Observable<Array<Movie>>;
@@ -29,7 +30,7 @@ export class MovieComponent implements OnInit {
         // get the data using ngrx
         this.store.dispatch(new movieActions.LoadMovies(this.searchText));
         this.getMoviesError = this.store.pipe(select(movieSelectors.getError));
-        //this.store.subscribe(state => (this.movies2 = state.movies.movies));
+        //this.store.subscribe(state => (this.movies = state.movies.movies));
 
         // get the data by using resolve
         /*this.route.data.subscribe((response: Data) => {
@@ -37,10 +38,9 @@ export class MovieComponent implements OnInit {
         });*/
 
         this.movies = this.store.pipe(select(movieSelectors.getMovies));
-
-        //this.store.p
-
-        console.log(this.movies);
+        this.store.subscribe((next: AppState) => {
+            this.loading = next.movies.loading;
+        })
     }
 
     search(event): void {

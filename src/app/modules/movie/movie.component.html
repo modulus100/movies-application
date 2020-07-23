@@ -1,10 +1,3 @@
-<div *ngIf="isLoading">
-    <mat-progress-bar class="loader" mode="indeterminate"></mat-progress-bar>
-</div>
-<div *ngIf="!isLoading">
-    <div class="empty-loader"></div>
-</div>
-
 <div class="d-flex justify-content-center align-items-center">
     <mat-form-field class="search-input" appearance="standard">
         <mat-label>Movie Search</mat-label>
@@ -16,27 +9,32 @@
             type="submit"
             (click)="search($event)"
             (keyup.enter)="search($event)"
-            [disabled]="isLoading">Search
+            [disabled]="loading">Search
     </button>
 </div>
 
 <div class="d-flex justify-content-center movie-container">
-    <div *ngIf="movies | async">
-        <mat-list>
-            <mat-list-item *ngFor="let movie of (movies | async)" [routerLink]="['/movie-details']">
-                <mat-icon matListIcon>movie</mat-icon>
-                <h3 matLine>Title: {{movie.Title}} </h3>
-                <p matLine>
-                    <span> Year </span>
-                    <span> -- {{movie.Year}} </span>
-                </p>
-                <mat-divider></mat-divider>
-            </mat-list-item>
-        </mat-list>
-    </div>
+    <div *ngIf="!loading">
+        <div *ngIf="movies | async">
+            <mat-list>
+                <mat-list-item *ngFor="let movie of (movies | async)" [routerLink]="['/movie-details']">
+                    <mat-icon matListIcon>movie</mat-icon>
+                    <h3 matLine>Title: {{movie.Title}} </h3>
+                    <p matLine>
+                        <span> Year </span>
+                        <span> -- {{movie.Year}} </span>
+                    </p>
+                    <mat-divider></mat-divider>
+                </mat-list-item>
+            </mat-list>
+        </div>
 
-    <div *ngIf="(getMoviesError | async) || (movies | async).length == 0">
-        {{noMoviesText}}
+        <div *ngIf="(getMoviesError | async) || (movies | async).length == 0">
+            {{noMoviesText}}
+        </div>
+    </div>
+    <div *ngIf="loading">
+        <mat-spinner></mat-spinner>
     </div>
 </div>
 

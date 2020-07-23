@@ -6,6 +6,7 @@ import {MovieRouteModule} from "./movie-route-store/movie-route.module";
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import {AppRoutingModule} from "../../app-routing.module";
 import {EffectsModule} from "@ngrx/effects";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {EffectsModule} from "@ngrx/effects";
         SharedModule,
         MovieStoreModule,
         MovieRouteModule,
-        AppRoutingModule
+        AppRoutingModule,
+        MatProgressSpinnerModule
     ],
     declarations: [
         MovieComponent,
