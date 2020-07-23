@@ -8,6 +8,7 @@ import * as appStates from "./movie-route-store/state/movie-state";
 import * as movieSelectors from "./movie-route-store/state/movie.selector";
 import * as movieActions from "./movie-route-store/state/movie.actions"
 import {AppState} from "./movie-route-store/state/movie-state";
+import {map} from "rxjs/operators";
 
 @Component({
     selector: 'movie-list',
@@ -18,31 +19,31 @@ export class MovieComponent implements OnInit {
     public loading: boolean = true;
     public searchText: String = "People";
     public noMoviesText: String = "There're no movies for this request, try something else";
-    public movies: Observable<Array<Movie>>;
-    public getMoviesError: Observable<string>;
+    public movies$: Observable<Array<Movie>>;
+    public getMoviesError$: Observable<string>;
 
     constructor(private router: Router,
                 private movieService: MovieService,
-                private store: Store<appStates.AppState>) {
+                private store$: Store<appStates.AppState>) {
     }
 
     ngOnInit(): void {
-        this.store.dispatch(new movieActions.LoadMovies(this.searchText));
-        this.getMoviesError = this.store.pipe(select(movieSelectors.getError));
+        this.store$.dispatch(new movieActions.LoadMovies(this.searchText));
+        this.getMoviesError$ = this.store$.pipe(select(movieSelectors.getError));
 
         // get the data by using resolve
         /*this.route.data.subscribe((response: Data) => {
             this.movies = response.movies.Search;
         });*/
 
-        this.movies = this.store.pipe(select(movieSelectors.getMovies));
-        this.store.subscribe((next: AppState) => {
+        this.movies$ = this.store$.pipe(select(movieSelectors.getMovies));
+        this.store$.subscribe((next: AppState) => {
             this.loading = next.movies.loading;
         })
     }
 
     search(event): void {
-        this.store.dispatch(new movieActions.LoadMovies(this.searchText));
+        this.store$.dispatch(new movieActions.LoadMovies(this.searchText));
     }
 }
 

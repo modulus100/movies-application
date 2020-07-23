@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {Movie} from "../models/movie.model";
-import {MovieActionTypes} from "../movie-route-store/state/movieActionTypes";
-import * as movieActions from "../movie-route-store/state/movie.actions";
-import {ActivatedRoute, Router} from "@angular/router";
-
+import {ActivatedRoute} from "@angular/router";
+import * as appStates from "../movie-route-store/state/movie-state";
+import * as movieSelectors from "../movie-route-store/state/movie.selector"
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
     selector: 'app-movie-details',
@@ -12,13 +13,25 @@ import {ActivatedRoute, Router} from "@angular/router";
     styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
-    public movies: Array<Movie>;
+    public movie$: Observable<Movie>;
+    public movie: Movie;
 
-    constructor(private store: Store<any>,
-                private router: ActivatedRoute) {
+    constructor(private store$: Store<appStates.AppState>,
+                private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        console.log(this.router.params);
+        this.initMovie();
+    }
+
+    initMovie(): void {
+        this.route.paramMap.subscribe(params => {
+            const id = params.get('id');
+            this.movie$ = this.store$.pipe(select(movieSelectors.getMovieById, {id}))
+        });
+
+        this.movie$.subscribe(next => {
+            console.log(next);
+        });
     }
 }
