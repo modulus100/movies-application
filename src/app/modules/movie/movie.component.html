@@ -33,7 +33,7 @@
         </mat-list-item>
     </mat-list>
 
-    <div *ngIf="getMoviesError | async">
+    <div *ngIf="(getMoviesError | async) || (movies | async).length == 0">
         {{noMoviesText}}
     </div>
 </div>
