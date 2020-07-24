@@ -6,6 +6,7 @@ import * as appStates from "./movie-route-store/state/movie-state";
 import * as movieSelectors from "./movie-route-store/state/movie.selector";
 import * as movieActions from "./movie-route-store/state/movie.actions"
 import {AppState} from "./movie-route-store/state/movie-state";
+import {take} from "rxjs/operators";
 
 
 @Component({
@@ -36,14 +37,15 @@ export class MovieComponent implements OnInit {
     }
 
     loadMovies(): void {
-        this.store$
-            .select(movieSelectors.getMoviesLoaded)
-            .subscribe(loaded => {
-                if (!loaded) {
-                    this.searchText = "People";
-                    this.store$.dispatch(new movieActions.LoadMovies(this.searchText));
-                }
-            });
+        this.store$.pipe(
+            select(movieSelectors.getMoviesLoaded),
+            take(1)
+        ).subscribe(loaded => {
+            if (!loaded) {
+                this.searchText = "People";
+                this.store$.dispatch(new movieActions.LoadMovies(this.searchText));
+            }
+        });
     }
 }
 
