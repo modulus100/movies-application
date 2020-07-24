@@ -1,18 +1,30 @@
 <div class="d-flex justify-content-center align-items-center">
-    <mat-card class="example-card">
+    <mat-card *ngIf="movie" class="example-card">
         <mat-card-header>
             <mat-card-title>{{movie.Title}}</mat-card-title>
             <mat-card-subtitle>Year: {{movie.Year}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{movie.Poster}}" alt="Photo of a Shiba Inu">
+        <img mat-card-image src="{{movie.Poster}}" alt="movie poster">
         <mat-card-content>
             <p>
                 Some fancy text. To show I know where to put a text.
                 My text is amazing.
             </p>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions (click)="goMainPage($event)">
             <button mat-button>BACK</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card *ngIf="!movie" class="example-card">
+        <img mat-card-image src="/assets/sad-pepe-2.jpg" alt="movie poster">
+        <mat-card-content>
+            <p>
+                State is not loaded.
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="goMainPage($event)" mat-button>Main Page</button>
         </mat-card-actions>
     </mat-card>
 </div>

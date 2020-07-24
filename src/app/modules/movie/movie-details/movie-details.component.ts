@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {Movie} from "../models/movie.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import * as appStates from "../movie-route-store/state/movie-state";
 import * as movieSelectors from "../movie-route-store/state/movie.selector"
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {take} from "rxjs/operators";
+
 
 @Component({
     selector: 'app-movie-details',
@@ -17,11 +18,12 @@ export class MovieDetailsComponent implements OnInit {
     public movie: Movie;
 
     constructor(private store$: Store<appStates.AppState>,
-                private route: ActivatedRoute) {
+                private activatedRoute: ActivatedRoute,
+                private router: Router) {
     }
 
     ngOnInit(): void {
-        this.route.paramMap.subscribe(params => {
+        this.activatedRoute.paramMap.subscribe(params => {
             const id = params.get('id');
             this.movie$ = this.store$.pipe(
                 select(movieSelectors.getMovieById, {id}),
@@ -30,8 +32,13 @@ export class MovieDetailsComponent implements OnInit {
         });
 
         this.movie$.subscribe(movie => {
-            console.log(movie);
             this.movie = movie;
         });
+    }
+
+    goMainPage(event=null): void {
+        this.router.navigate(['']).catch(() => {
+            console.log("Couldn't navigate to root");
+        })
     }
 }
