@@ -11,7 +11,7 @@ import {take} from "rxjs/operators";
 @Component({
     selector: 'app-movie-details',
     templateUrl: './movie-details.component.html',
-    styleUrls: ['./movie-details.component.scss']
+    styleUrls: ['./movie-details.component.sass']
 })
 export class MovieDetailsComponent implements OnInit {
     public movie$: Observable<Movie>;

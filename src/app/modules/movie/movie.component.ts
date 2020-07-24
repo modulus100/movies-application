@@ -11,7 +11,7 @@ import {AppState} from "./movie-route-store/state/movie-state";
 @Component({
     selector: 'movie-list',
     templateUrl: './movie.component.html',
-    styleUrls: ['./movie.component.scss']
+    styleUrls: ['./movie.component.sass']
 })
 export class MovieComponent implements OnInit {
     public loading: boolean = true;
