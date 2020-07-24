@@ -2,7 +2,8 @@
 
 This is Angular 10 demo project which is based on Angular starter project https://angular.io/start  
 The most challenging part for me was [ngrx](https://ngrx.io/), spent quite much time on reading docs  
-and learning reactive states for immutable data handling, but it's worth it and works well.
+and learning reactive states for immutable data handling, but it's worth it and works well.  
+App includes the following dependencies: Angular Material, rxjs, ngrx, bootstrap, pepe frog.
 
 
 
