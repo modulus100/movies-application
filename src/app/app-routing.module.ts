@@ -12,6 +12,10 @@ const appRoutes: Routes = [
             //movies: MovieListResolver
         }
     },
+    {
+        path: '**',
+        redirectTo: ''
+    }
 ];
 
 @NgModule({
