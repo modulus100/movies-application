@@ -15,7 +15,7 @@ import {AppState} from "./movie-route-store/state/movie-state";
 })
 export class MovieComponent implements OnInit {
     public loading: boolean = true;
-    public searchText: String = "People";
+    public searchText: String;
     public noMoviesText: String = "There're no movies for this request, try something else";
     public getMoviesError$: Observable<string>;
     public movies$: Observable<Array<Movie>>;
@@ -40,6 +40,7 @@ export class MovieComponent implements OnInit {
             .select(movieSelectors.getMoviesLoaded)
             .subscribe(loaded => {
                 if (!loaded) {
+                    this.searchText = "People";
                     this.store$.dispatch(new movieActions.LoadMovies(this.searchText));
                 }
             });
