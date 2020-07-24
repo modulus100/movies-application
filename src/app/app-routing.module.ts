@@ -9,7 +9,7 @@ const appRoutes: Routes = [
         path: '',
         component: MovieComponent,
         resolve: {
-            movies: MovieListResolver
+            //movies: MovieListResolver
         }
     },
 ];

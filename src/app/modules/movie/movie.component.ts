@@ -3,11 +3,12 @@ import {Router} from "@angular/router";
 import {MovieService} from "./services/movie.service";
 import {Movie} from "./models/movie.model";
 import {select, Store} from "@ngrx/store";
-import {Observable} from "rxjs";
+import {combineLatest, Observable} from "rxjs";
 import * as appStates from "./movie-route-store/state/movie-state";
 import * as movieSelectors from "./movie-route-store/state/movie.selector";
 import * as movieActions from "./movie-route-store/state/movie.actions"
 import {AppState} from "./movie-route-store/state/movie-state";
+import {take} from "rxjs/operators";
 
 
 @Component({
@@ -22,23 +23,29 @@ export class MovieComponent implements OnInit {
     public movies$: Observable<Array<Movie>>;
     public getMoviesError$: Observable<string>;
 
-    constructor(private router: Router,
-                private movieService: MovieService,
-                private store$: Store<appStates.AppState>) {
-    }
+    constructor(private store$: Store<appStates.AppState>) {}
 
     ngOnInit(): void {
-        this.store$.dispatch(new movieActions.LoadMovies(this.searchText));
+        this.loadMovies();
         this.store$.subscribe((next: AppState) => {
             this.loading = next.movies.loading;
         });
-
         this.getMoviesError$ = this.store$.pipe(select(movieSelectors.getError));
-        this.movies$ = this.store$.pipe(select(movieSelectors.getMovies));
+        this.movies$ = this.store$.select(movieSelectors.getMovies)
     }
 
     search(event): void {
         this.store$.dispatch(new movieActions.LoadMovies(this.searchText));
+    }
+
+    loadMovies(): void {
+        this.store$
+            .select(movieSelectors.getMoviesLoaded)
+            .subscribe(loaded => {
+                if (!loaded) {
+                    this.store$.dispatch(new movieActions.LoadMovies(this.searchText));
+                }
+            });
     }
 }
 
