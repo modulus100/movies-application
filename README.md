@@ -1,4 +1,4 @@
-# AngularApp
+# Angular movies app
 
 This is Angular 10 demo project which is based on Angular starter project https://angular.io/start  
 The most challenging part for me was [ngrx](https://ngrx.io/), spent quite much time on reading docs  
