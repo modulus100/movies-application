@@ -1,8 +1,8 @@
 import * as movieActions from "./movie.actions";
-import {MovieActionTypes} from "./movieActionTypes";
-import {defaultMovie} from "./movie-state";
-import {createEntityAdapter, EntityAdapter} from "@ngrx/entity";
-import {Movie} from "../../models/movie.model";
+import { MovieActionTypes } from "./movieActionTypes";
+import { defaultMovie } from "./movie-state";
+import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
+import { Movie } from "../../models/movie.model";
 
 
 export const movieAdapter: EntityAdapter<Movie> = createEntityAdapter<Movie>();

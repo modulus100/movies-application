@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {MovieSearchResponse} from "../models/movie-search-response.model"
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { MovieSearchResponse } from "../models/movie-search-response.model"
 
 @Injectable({
     providedIn: 'root',

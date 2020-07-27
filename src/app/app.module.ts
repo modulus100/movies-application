@@ -1,15 +1,15 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {AppComponent} from './app.component';
-import {TopBarComponent} from './core/top-bar/top-bar.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {URLInterceptor} from "./core/http/url.interceptor";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {AppRoutingModule} from "./app-routing.module";
-import {MovieModule} from "./modules/movie/movie.module";
-import {AppStoreModule} from "./app-store.module";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { TopBarComponent } from './core/top-bar/top-bar.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { URLInterceptor } from "./core/http/url.interceptor";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from "./app-routing.module";
+import { MovieModule } from "./modules/movie/movie.module";
+import { AppStoreModule } from "./app-store.module";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 
 @NgModule({

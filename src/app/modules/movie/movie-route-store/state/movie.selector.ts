@@ -1,8 +1,8 @@
-import {createFeatureSelector, createSelector} from "@ngrx/store";
-import {MovieState} from "./movie-state";
-import {movieAdapter} from "./movie.reducer";
-import {Movie} from "../../models/movie.model";
-import {Dictionary} from "@ngrx/entity";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { MovieState } from "./movie-state";
+import { movieAdapter } from "./movie.reducer";
+import { Movie } from "../../models/movie.model";
+import { Dictionary } from "@ngrx/entity";
 
 
 const getMovieState = createFeatureSelector<MovieState>('movies')

@@ -1,14 +1,14 @@
-import {Injectable} from "@angular/core";
-import {Actions, Effect, ofType} from "@ngrx/effects";
-import {MovieService} from "../../services/movie.service";
-import {catchError, map, mergeMap} from "rxjs/operators";
-import {Observable, of} from "rxjs";
-import {Action, Store} from "@ngrx/store";
+import { Injectable } from "@angular/core";
+import { Actions, Effect, ofType } from "@ngrx/effects";
+import { MovieService } from "../../services/movie.service";
+import { catchError, map, mergeMap } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { Action, Store } from "@ngrx/store";
 import * as movieActions from "./movie.actions"
-import {MovieActionTypes} from "./movieActionTypes";
-import {MovieSearchResponse} from "../../models/movie-search-response.model";
-import {Movie} from "../../models/movie.model";
-import {LoadMovies} from "./movie.actions";
+import { MovieActionTypes } from "./movieActionTypes";
+import { MovieSearchResponse } from "../../models/movie-search-response.model";
+import { Movie } from "../../models/movie.model";
+import { LoadMovies } from "./movie.actions";
 import * as appStates from "./movie-state";
 
 @Injectable()

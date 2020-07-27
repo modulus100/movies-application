@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {select, Store} from "@ngrx/store";
-import {Movie} from "../models/movie.model";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { select, Store } from "@ngrx/store";
+import { Movie } from "../models/movie.model";
+import { ActivatedRoute, Router } from "@angular/router";
 import * as appStates from "../movie-route-store/state/movie-state";
 import * as movieSelectors from "../movie-route-store/state/movie.selector"
-import {Observable, of} from "rxjs";
-import {take} from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { take } from "rxjs/operators";
 
 
 @Component({

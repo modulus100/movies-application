@@ -1,7 +1,7 @@
-import {NgModule} from "@angular/core";
-import {RouterModule, Routes} from "@angular/router";
-import {MovieComponent} from "./modules/movie/movie.component";
-import {MovieDetailsComponent} from "./modules/movie/movie-details/movie-details.component";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { MovieComponent } from "./modules/movie/movie.component";
+import { MovieDetailsComponent } from "./modules/movie/movie-details/movie-details.component";
 
 
 const appRoutes: Routes = [

@@ -1,7 +1,7 @@
-import {MovieActionTypes} from "./movieActionTypes";
+import { MovieActionTypes } from "./movieActionTypes";
 // @ts-ignore
-import {Action} from "@ngrx/store";
-import {Movie} from "../../models/movie.model";
+import { Action } from "@ngrx/store";
+import { Movie } from "../../models/movie.model";
 
 export class LoadMovies implements Action {
     constructor(public searchKeyword: String) {}
