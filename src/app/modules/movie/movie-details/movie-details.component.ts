@@ -24,10 +24,7 @@ export class MovieDetailsComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.paramMap.subscribe(params => {
             const id = params.get('id');
-            this.movie$ = this.store$.pipe(
-                select(movieSelectors.getMovieById, {id}),
-                take(1)
-            );
+            this.movie$ = this.store$.select(movieSelectors.getMovieById, {id});
         });
     }
 
