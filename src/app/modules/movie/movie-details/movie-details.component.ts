@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import * as appStates from "../movie-route-store/state/movie-state";
 import * as movieSelectors from "../movie-route-store/state/movie.selector"
 import { Observable, of } from "rxjs";
-import { take } from "rxjs/operators";
 
 
 @Component({
