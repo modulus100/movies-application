@@ -15,7 +15,6 @@ import { take } from "rxjs/operators";
 })
 export class MovieDetailsComponent implements OnInit {
     public movie$: Observable<Movie>;
-    public movie: Movie;
 
     constructor(private store$: Store<appStates.AppState>,
                 private activatedRoute: ActivatedRoute,
@@ -29,10 +28,6 @@ export class MovieDetailsComponent implements OnInit {
                 select(movieSelectors.getMovieById, {id}),
                 take(1)
             );
-        });
-
-        this.movie$.subscribe(movie => {
-            this.movie = movie;
         });
     }
 
